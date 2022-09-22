@@ -20,13 +20,15 @@ export default function finish ({ userID }) {
                     click.view(
                         <message>
                             <content>Awesome! Why don't we have a look at the rest of the server now?</content>
-                            <ActionRow>
-                                <StatelessButton onClick={click => {
-                                    click.member.roles.add('1018263397571231755');
-                                    click.guild.channels.cache.get('1022350908333490226').send(`Welcome, <@${click.user.id}>. Why don't you introduce yourself?`);
-                                    click.channel.delete();
-                                }} label="Let's go!" variant={3} />
-                            </ActionRow>
+                            <components_arr> {/** output an array of Discord message components */}
+                                <component type={1}>
+                                    <StatelessButton onClick={click => {
+                                        click.member.roles.add('1018263397571231755');
+                                        click.guild.channels.cache.get('1022350908333490226').send(`Welcome, <@${click.user.id}>. Why don't you introduce yourself?`);
+                                        click.channel.delete();
+                                    }} label="Let's go!" variant={3} />
+                                </component>
+                            </components_arr>
                         </message>
                     )
                 }} label="Yep!" variant={3} />
