@@ -16,14 +16,6 @@ export default function finish ({ userID }) {
                         </message>
                     )
                 }} label="Yep!" variant={3} />
-                <Button onClick={click => {
-                    click.view(
-                        <message>
-                            <content>Test</content>
-                        </message>
-                    )
-                }} label="Test" variant={2}>
-                </Button>
             </ActionRow>
         </message>
     );

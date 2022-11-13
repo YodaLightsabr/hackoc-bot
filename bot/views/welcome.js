@@ -1,5 +1,6 @@
 import { View } from '@conflict/beta/view';
 import { deleteAfter } from '@conflict/beta/hooks';
+import { StatelessButton, Button, ActionRow, Embed } from '@conflict/beta/components';
 
 let phrases = [
     "Discord Bots",
@@ -21,6 +22,15 @@ export default function () {
                     </description>
                 </embed>
             </embeds>
+            <ActionRow>
+                <Button onClick={click => {
+                    click.view(
+                        <message>
+                            <content>Test</content>
+                        </message>
+                    )
+                }} label="Test" variant={2} />
+            </ActionRow>
         </message>
     ).useHooks(deleteAfter(5000));
 }
