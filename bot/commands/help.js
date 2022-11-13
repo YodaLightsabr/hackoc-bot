@@ -12,7 +12,7 @@ export default new Command({
         command.view(
             <message>
                 <Embed color="#ff3333" image={{ url: "https://conflict.js.org/favicon.png" }}>
-                    <title>Hello, world!</title>
+                    <title>Hello, world! ahhhhh</title>
                     <description>Welcome to **Conflict**.</description>
                 </Embed>
                 <ActionRow>
