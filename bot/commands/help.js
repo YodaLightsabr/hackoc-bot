@@ -1,5 +1,5 @@
 import Command from '@conflict/beta/commands';
-import { Embed } from '@conflict/beta/components';
+import { Embed, ActionRow, Button } from '@conflict/beta/components';
 
 export default new Command({
     name: 'help',
@@ -15,6 +15,15 @@ export default new Command({
                     <title>Hello, world!</title>
                     <description>Welcome to **Conflict**.</description>
                 </Embed>
+                <ActionRow>
+                    <Button onClick={click => {
+                        click.view(
+                            <message>
+                                <content>Test</content>
+                            </message>
+                        )
+                    }} label="Test" variant={2} />
+                </ActionRow>
             </message>
         );
     }
