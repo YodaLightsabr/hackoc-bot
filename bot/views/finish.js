@@ -2,15 +2,6 @@ import { View } from '@conflict/beta/view';
 import { deleteAfter } from '@conflict/beta/hooks';
 import { StatelessButton, Button, ActionRow, Embed } from '@conflict/beta/components';
 
-let phrases = [
-    "Discord Bots",
-    "Slash Commands",
-    "Message Components",
-    "User Interfaces",
-    "Scalable Bots",
-    "User Experiences"
-];
-
 export default function finish ({ userID }) {
     return new View(
         <message>
@@ -25,6 +16,14 @@ export default function finish ({ userID }) {
                         </message>
                     )
                 }} label="Yep!" variant={3} />
+                <Button onClick={click => {
+                    click.view(
+                        <message>
+                            <content>Test</content>
+                        </message>
+                    )
+                }} label="Test" variant={2}>
+                </Button>
             </ActionRow>
         </message>
     );
