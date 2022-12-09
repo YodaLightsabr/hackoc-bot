@@ -1,5 +1,6 @@
 import { View } from '@conflict/beta/view';
 import { deleteAfter } from '@conflict/beta/hooks';
+import { StatelessButton, Button, ActionRow, Embed } from '@conflict/beta/components';
 let phrases = ["Discord Bots", "Slash Commands", "Message Components", "User Interfaces", "Scalable Bots", "User Experiences"];
 export default function () {
   return new View(global.__ConflictViewParser("message", {

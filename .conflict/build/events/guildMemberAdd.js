@@ -1,5 +1,5 @@
 import { onGuildMemberAdd } from '@conflict/beta/events';
-import finish from "../views/finish.js?n=16638281665018969";
+import finish from "../views/finish.js?n=16705753772588309";
 onGuildMemberAdd(async member => {
   console.log('new member', member);
   const name = 'welcome-' + member.displayName.toLowerCase().split(' ').join('-').split('').filter(a => `-abcdefghijklmnopqrstuvwxyz1234567890`.includes(a)).join('');

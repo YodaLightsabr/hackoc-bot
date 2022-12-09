@@ -1,7 +1,7 @@
 import Command from '@conflict/beta/commands';
 import { Embed, ActionRow, Button } from '@conflict/beta/components';
 export default new Command({
-  name: 'help',
+  name: 'sweep',
   description: 'Get help',
   options: [],
   testing: {
