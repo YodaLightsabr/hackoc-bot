@@ -1,5 +1,5 @@
 import Command from '@conflict/beta/commands';
-import { Embed, ActionRow, Button } from '@conflict/beta/components';
+import CommandResponse from "../components/CommandResponse.js?n=16706397781652282";
 export default new Command({
   name: 'sweep',
   description: 'Clean up a channel',
@@ -14,19 +14,24 @@ export default new Command({
   },
   execute: async (command, options, utils) => {
     const count = Math.min(command.options?.count || 10, 100);
-    if (!command.member?.permissions.has('MANAGE_MESSAGES')) return command.view(global.__ConflictViewParser("message", null, global.__ConflictViewParser(Embed, {
-      color: "#ff3333"
-    }, global.__ConflictViewParser("title", null, "\u2757 Unable to sweep"), global.__ConflictViewParser("description", null, "It appears you aren't on the ", '<@&1018263308865904660>'))));
+    if (!command.member?.permissions.has('MANAGE_MESSAGES')) return command.view(global.__ConflictViewParser("message", null, global.__ConflictViewParser(CommandResponse, {
+      title: "Unable to sweep",
+      error: "It appears you aren't on the <@&1018263308865904660>"
+    })));
 
     try {
       await command.channel.bulkDelete(count);
-      command.view(global.__ConflictViewParser("message", null, global.__ConflictViewParser(Embed, {
-        color: "#33ff33"
-      }, global.__ConflictViewParser("title", null, "\uD83E\uDDF9 Sweep successful"), global.__ConflictViewParser("description", null, "Swept ", count, " messages from ", '<#' + command.channel.id + '>'))));
+      command.view(global.__ConflictViewParser("message", null, global.__ConflictViewParser(CommandResponse, {
+        title: "Sweep successful",
+        emoji: "\uD83E\uDDF9",
+        message: `Swept ${count} messages from <#${command.channel.id}>`
+      })));
     } catch (err) {
-      command.view(global.__ConflictViewParser("message", null, global.__ConflictViewParser(Embed, {
-        color: "#ff3333"
-      }, global.__ConflictViewParser("title", null, "\u2757 Unable to sweep"), global.__ConflictViewParser("description", null, "Uncaught `", err.name, "` occurred"))));
+      console.error(err);
+      command.view(global.__ConflictViewParser("message", null, global.__ConflictViewParser(CommandResponse, {
+        title: "Unable to sweep",
+        error: `Uncaught ${err.name} occurred: ${err.message}`
+      })));
     }
   }
 });

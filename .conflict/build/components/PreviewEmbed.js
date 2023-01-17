@@ -1,5 +1,5 @@
 import { ActionRow, Embed, Button } from '@conflict/beta/components';
-import { getMessageUrl } from "../utils.js?n=16705753772535440";
+import { getMessageUrl } from "../utils.js?n=16706397781849121";
 export default function PreviewEmbed({
   children,
   message
