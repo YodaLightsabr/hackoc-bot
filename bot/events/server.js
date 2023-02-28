@@ -24,7 +24,7 @@ onReady(client => {
         const state = Buffer.from(JSON.stringify({
             fullName: req.query.name
         }), 'utf8').toString('base64');
-        res.redirect('https://discord.com/api/oauth2/authorize?client_id=1022269868478828645&redirect_uri=http%3A%2F%2Flocalhost%3A3008%2Fonboarding%2Fcallback&response_type=code&scope=guilds.join%20identify&state=' + encodeURIComponent(state));
+        res.redirect('https://discord.com/api/oauth2/authorize?client_id=1022269868478828645&redirect_uri=https%3A%2F%2Fdiscord.api.hackoc.org%2Fonboarding%2Fcallback&response_type=code&scope=identify%20guilds.join&state=' + encodeURIComponent(state));
     });
     
     app.get('/onboarding/callback', async (req, res) => {
