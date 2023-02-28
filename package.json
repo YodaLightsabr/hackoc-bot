@@ -11,7 +11,10 @@
   "author": "Conflict.js",
   "type": "module",
   "dependencies": {
-    "@conflict/beta": "^0.9.49"
+    "@conflict/beta": "^0.9.49",
+    "discord-oauth2": "^2.11.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",

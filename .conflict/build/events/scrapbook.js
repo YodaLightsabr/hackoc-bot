@@ -1,7 +1,7 @@
 const scrapbookChannel = '1022275757692682240';
 import { onMessageCreate } from '@conflict/beta/events';
-import feedPost from "../feed/feed.js?n=16706397782044";
-import { getMessageUrl, wait } from "../utils.js?n=16706397782044301";
+import feedPost from "../feed/feed.js?n=16776051474182898";
+import { getMessageUrl, wait } from "../utils.js?n=16776051474186975";
 onMessageCreate(async message => {
   if (message.channel.id != scrapbookChannel) return;
   if (message.author?.bot) return;

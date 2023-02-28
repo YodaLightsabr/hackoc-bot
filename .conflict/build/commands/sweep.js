@@ -1,5 +1,5 @@
 import Command from '@conflict/beta/commands';
-import CommandResponse from "../components/CommandResponse.js?n=16706397781652282";
+import CommandResponse from "../components/CommandResponse.js?n=16776051473855052";
 export default new Command({
   name: 'sweep',
   description: 'Clean up a channel',
@@ -30,7 +30,7 @@ export default new Command({
       console.error(err);
       command.view(global.__ConflictViewParser("message", null, global.__ConflictViewParser(CommandResponse, {
         title: "Unable to sweep",
-        error: `Uncaught ${err.name} occurred: ${err.message}`
+        error: `Uncaught \`${err.name}\` occurred: ${err.message}`
       })));
     }
   }

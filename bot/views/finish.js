@@ -15,6 +15,10 @@ export default function finish ({ userID }) {
                             <content>Awesome! Why don't we have a look at the rest of the server now? Check out {'<#1022350908333490226>'}.</content>
                         </message>
                     )
+                    setTimeout(() => {
+                        click.channel.setName('notifications-' + click.member.displayName.toLowerCase().split(' ').join('-').split('').filter(a => `-abcdefghijklmnopqrstuvwxyz1234567890`.includes(a)).join(''));
+                        click.channel.send(`<@${click.user.id}> Welcome to the server! Going forward, I'll use this channel to send you notifications or updates about registration, judging, and more.`);
+                    }, 10000);
                 }} label="Yep!" variant={3} />
             </ActionRow>
         </message>
