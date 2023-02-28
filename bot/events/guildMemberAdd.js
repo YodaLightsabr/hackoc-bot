@@ -1,9 +1,10 @@
 import { onGuildMemberAdd } from '@conflict/beta/events';
 import finish from '../views/finish.js';
+import mongo from 'mongodb';
 
 export function dbConnect () {
     return new Promise((resolve, reject) => {
-    const { MongoClient, ServerApiVersion } = require('mongodb');
+    const { MongoClient, ServerApiVersion } = mongo;
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect(err => {
