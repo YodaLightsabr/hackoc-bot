@@ -1,7 +1,26 @@
 import { onGuildMemberAdd } from '@conflict/beta/events';
 import finish from '../views/finish.js';
 
+export function dbConnect () {
+    return new Promise((resolve, reject) => {
+    const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = process.env.MONGODB_URI;
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+    if (err) return reject(err);
+  resolve(client);
+  // perform actions on the collection object
+});
+    });
+
+}
+
+
 onGuildMemberAdd(async member => {
+
+    const db = await dbConnect();
+
+
     console.log('new member', member);
     const name = 'welcome-' + member.displayName.toLowerCase().split(' ').join('-').split('').filter(a => `-abcdefghijklmnopqrstuvwxyz1234567890`.includes(a)).join('');
     console.log(name);
@@ -9,6 +28,11 @@ onGuildMemberAdd(async member => {
         reason: 'Create a welcome channel',
         parent: '1022358272377880640'
     });
+    const collection = db.db("primary").collection("channels");
+    console.log(await collection.insertOne({
+        userID: member.id,
+        channelID: channel.id
+    }));
 
     console.log(channel);
 
