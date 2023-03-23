@@ -27,7 +27,9 @@ onGuildMemberAdd(async member => {
     console.log(name);
     const channel = await member.guild.channels.create(name, {
         reason: 'Create a welcome channel',
-        parent: '1022358272377880640'
+        // old parents:
+        // 1022358272377880640 - Home~1
+        parent: '1088251238824550542'
     });
     const collection = db.db("primary").collection("channels");
     console.log(await collection.insertOne({
