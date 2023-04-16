@@ -17,9 +17,8 @@ client.connect(err => {
 }
 
 
-onGuildMemberAdd(async member => {
+export const memberAdd = async member => {
 
-    const db = await dbConnect();
 
 
     console.log('new member', member);
@@ -31,11 +30,6 @@ onGuildMemberAdd(async member => {
         // 1022358272377880640 - Home~1
         parent: '1088251238824550542'
     });
-    const collection = db.db("primary").collection("channels");
-    console.log(await collection.insertOne({
-        userID: member.id,
-        channelID: channel.id
-    }));
 
     console.log(channel);
 
@@ -44,6 +38,16 @@ onGuildMemberAdd(async member => {
     });
 
     channel.view(finish({ userID: member.id }));
+    const db = await dbConnect();
+
+    const collection = db.db("primary").collection("channels");
+    console.log(await collection.insertOne({
+        userID: member.id,
+        channelID: channel.id
+    }));
+
 
     // await channel.send(`:wave: Hello, <@${member.id}>! Welcome to Hack OC!`);
-});
+};
+
+onGuildMemberAdd(memberAdd);
