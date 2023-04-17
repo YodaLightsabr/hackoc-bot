@@ -9,7 +9,7 @@ export default async function feedPost (data, client) {
 
     const message = await feed.send(
         new View(
-            <PreviewEmbed message={data.message} />
+            <PreviewEmbed message={data.message} url={data.external} />
         )
     );
     await message.crosspost();

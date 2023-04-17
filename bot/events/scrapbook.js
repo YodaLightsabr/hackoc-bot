@@ -7,7 +7,7 @@ import feedPost from '../feed/feed.js';
 import { getMessageUrl, wait } from '../utils.js';
 import fetch from 'node-fetch';
 
-export async function post (user, avatar, message, image) {
+export async function post (user, avatar, message, image, url) {
     const response = await fetch("https://hackoc.org/api/scrapbookpost", {
         method: "POST",
         headers: {
@@ -15,13 +15,14 @@ export async function post (user, avatar, message, image) {
         },
         body: JSON.stringify({
             token: process.env.HACKOC_API_TOKEN,
-            user,
+            name: user,
             avatar,
             message,
-            image
+            image,
+            discord: url
         })
     }).then(res => res.json());
-    return response.uid;
+    return response.shortId;
 }
 
 onMessageCreate(async message => {
@@ -31,22 +32,22 @@ onMessageCreate(async message => {
     const valid = validateScrapbookPost(message);
 
     if (!valid) {
-        await message.member.send('Your post was deleted because it did not meet the requirements for the scrapbook. Please read the rules and try again.');
+        await message.member.send('Scrapbook posts require an image, so I\'ve gone ahead and deleted your message. Try re-sending with an image attached.');
         await message.delete();
         return;
     }
 
-    const id = await post(message.author.tag, message.author.displayAvatarURL(), message.content, message.attachments.first().url);
+    const id = await post(message.author.tag + '', message.author.displayAvatarURL(), message.content, message.attachments.first().url, message.url);
     
     const thread = await message.startThread({
         name: `🖼️ ${id.substring(0, 4)} ${message.author.tag.substring(0, 15)}`,
     });
 
     
-    
-    await thread.send(`Awesome post! I've added it to the Hack OC website: https://hackoc.org/s/${id};`)
+    const externalUrl = `https://hackoc.org/s/${id}`;
+    await thread.send(`Awesome post! I've added it to the Hack OC website: ${externalUrl}`)
 
-    await feedPost({ url: getMessageUrl(message), message }, message.client);
+    await feedPost({ url: getMessageUrl(message), message, external: externalUrl }, message.client);
 });
 
 export function validateScrapbookPost (message) {

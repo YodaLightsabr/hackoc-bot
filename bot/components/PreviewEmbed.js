@@ -1,7 +1,7 @@
 import { ActionRow, Embed, Button } from '@conflict/beta/components';
 import { getMessageUrl } from '../utils.js';
 
-export default function PreviewEmbed ({ children, message }) {
+export default function PreviewEmbed ({ children, message, url }) {
     const attachment = message.attachments.first();
     const imageUrl = attachment.url;
     return (
@@ -24,6 +24,7 @@ export default function PreviewEmbed ({ children, message }) {
             </Embed>
             <ActionRow>
                 <Button label="View in #🖼-scrapbook" url={getMessageUrl(message)} />
+                <Button label="View on hackoc.org" url={url} />
             </ActionRow>
         </message>
     );
