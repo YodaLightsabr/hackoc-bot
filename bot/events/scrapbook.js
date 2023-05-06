@@ -47,7 +47,7 @@ onMessageCreate(async message => {
     const externalUrl = `https://hackoc.org/s/${id}`;
     await thread.send(`Awesome post! I've added it to the Hack OC website: ${externalUrl}`)
 
-    await feedPost({ url: getMessageUrl(message), message, external: externalUrl }, message.client);
+    await feedPost({ url: getMessageUrl(message), message, external: externalUrl }, message.client, "scrapbook");
 });
 
 export function validateScrapbookPost (message) {

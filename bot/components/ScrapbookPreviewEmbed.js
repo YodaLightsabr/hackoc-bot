@@ -1,7 +1,7 @@
 import { ActionRow, Embed, Button } from '@conflict/beta/components';
 import { getMessageUrl } from '../utils.js';
 
-export default function PreviewEmbed ({ children, message, url }) {
+export default function ScrapbookPreviewEmbed ({ children, message, url }) {
     const attachment = message.attachments.first();
     const imageUrl = attachment.url;
     return (
